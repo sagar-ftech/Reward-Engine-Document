@@ -1,3 +1,4 @@
+[![License](https://poser.pugx.org/trexology/pointable/license)](https://packagist.org/packages/trexology/pointable)
 # Reward Engine
 Reward Engine Project to Generate Reward point based on certain events and perform transaction of them as digital currency.
 
