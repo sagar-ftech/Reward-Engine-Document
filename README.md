@@ -1,4 +1,4 @@
-# reward-engine
+# Reward Engine
 Reward Engine Project to Generate Reward point based on certain events and perform transaction of them as digital currency.
 
 This Package Generate Reward / Add Reward to the user Based on the Reward Classification group.
