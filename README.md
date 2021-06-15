@@ -44,15 +44,30 @@ php artisan classification:create
 ```
 
 ### List Reward Classifications
+#### Using Artisan
 To get list Reward Classification run below command which will output all available classifications.
 ```shell
 php artisan classification:list
 ```
-
+#### Using Programatically
+To get avail transaction you can use below function
+```php
+// Get All Classification
+$classifications = RewardEngine::Classifications();
+// Get Specific Classification By Name
+$classification = RewardEngine::Classifications('AccountVerified');
+```
+## Balance
+To get user's balance you can use below fuction. The parameter shouild be the ID of user.
+It will return 0 if no transaction performed for the user.
+```php
+// Auth::User()->id can be pass too.
+RewardEngine::getBalance(1);
+```
 ## Transaction
 In this section all trasnsaction of Reward Related performed.
 
-### Configure Listener (Type A)
+### Make Transaction (Using Listener)
 You can perform transaction by attaching **ExecuteEventTransaction**
 listner to your event in your app's event service Provider.
 
@@ -101,4 +116,19 @@ class AccountVerified implements ShouldHandleRewardTransaction
         return new PrivateChannel('channel-name');
     }
 }
+```
+
+### Retrive Transactions
+#### Retrive Transaction
+To retrive all transaction or user's specific transaction you can use below methods.
+```php
+$transactionsAll = RewardEngine::getTransactions();
+// Auth::user()->id can also pass
+$transactions = RewardEngine::getTransactions(1);
+```
+#### Retrive Classification's Transaction
+To Retrive all transaction of specific Classification
+```php
+$classification = RewardEngine::Classifications('AccountVerified');
+$transactionOfClassification = $classification->transactions();
 ```
