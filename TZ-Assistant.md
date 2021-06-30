@@ -41,11 +41,11 @@ To convert any UTC time to User's design time format
 you can do it by this way.
 ```php
 // TO default format
-Timezone::convertToLocal($post->created_at); // 16th Jun 2021 3:32:pm
+Timezone::convertToUsers($post->created_at); // 16th Jun 2021 3:32:pm
 // To specific format
-Timezone::convertToLocal($post->created_at. 'd m Y'); // 16 6 2021
+Timezone::convertToUsers($post->created_at. 'd m Y'); // 16 6 2021
 // With Timezone Name
-Timezone::convertToLocal($post->created_at, 'Y-m-d g:i', true) // 2018-07-04 3:32 New York, America
+Timezone::convertToUsers($post->created_at, 'Y-m-d g:i', true) // 2018-07-04 3:32 New York, America
 ```
 
 ### Using Blade Engine
@@ -56,6 +56,18 @@ Timezone::convertToLocal($post->created_at, 'Y-m-d g:i', true) // 2018-07-04 3:3
 @displayDate($post->created_at, 'Y-m-d g:i', true)
 // 2018-07-04 3:32 New York, America
 ```
+### Using Modal Attribute
+Instead of calling "convertToUsers" function everytime you can add train to your modal.
+
+```php
+    use ConvertUsersTime;
+```
+
+and then call the any timestamp typed attribute with post fix of 
+**_to_ut**. This will return the UTC (stored) DateTime to User's specific timezon.
+
+The same work vice versa. You can set value to these attribute and 
+it will stored UTC value into actual Database mapped Attribute.
 
 ## Saving the users input to the database in UTC
 This will take a date/time, set it to the users timezone then return it as UTC in a Carbon instance.
@@ -69,3 +81,5 @@ $post = Post::create([
 ## Custom Configuration
 Publishing the config file is optional.
 After publishing Config file you can change default Datetime format.
+
+Note: https://github.com/jamesmills/laravel-timezone
